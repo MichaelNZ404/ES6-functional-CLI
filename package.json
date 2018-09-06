@@ -1,6 +1,6 @@
 {
     "scripts": {
-      "test": "jest",
-      "coverage": "jest --coverage"
+      "test": "jest --silent",
+      "coverage": "jest --silent --coverage"
     }
   }

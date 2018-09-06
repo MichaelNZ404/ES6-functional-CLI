@@ -1,4 +1,4 @@
-const {processInput, closeSession} = require('./run');
+const {processInput, closeSession} = require('./process');
 
 afterAll(() => {
     return closeSession();
@@ -40,4 +40,27 @@ test('Placement refuses bad directions', () => {
 
 test('Placement will override previous bus status', () => {
     expect(processInput([3,3,"NORTH"], ["PLACE", "2,2,SOUTH"])).toEqual([2,2,"SOUTH"]);
+});
+
+test('Rotation works as expected', () => {
+    expect(processInput([3,3,"NORTH"], ["LEFT"])).toEqual([3,3,"WEST"]);
+    expect(processInput([3,3,"SOUTH"], ["LEFT"])).toEqual([3,3,"EAST"]);
+    expect(processInput([3,3,"EAST"], ["LEFT"])).toEqual([3,3,"SOUTH"]);
+    expect(processInput([3,3,"WEST"], ["LEFT"])).toEqual([3,3,"NORTH"]);
+    expect(processInput(null, ["LEFT"])).toEqual(null);
+    expect(processInput([3,3,"NORTH"], ["RIGHT"])).toEqual([3,3,"EAST"]);
+    expect(processInput([3,3,"SOUTH"], ["RIGHT"])).toEqual([3,3,"WEST"]);
+    expect(processInput([3,3,"EAST"], ["RIGHT"])).toEqual([3,3,"NORTH"]);
+    expect(processInput([3,3,"WEST"], ["RIGHT"])).toEqual([3,3,"SOUTH"]);
+    expect(processInput(null, ["RIGHT"])).toEqual(null);
+});
+
+test('Reporting does not alter the state of the bus', () => {
+    expect(processInput([3,3,"NORTH"], ["REPORT"])).toEqual([3,3,"NORTH"]);
+    expect(processInput(null, ["REPORT"])).toEqual(null);
+});
+
+test('Invalid commands do not alter the state of the bus', () => {
+    expect(processInput([3,3,"NORTH"], ["FOOBAR"])).toEqual([3,3,"NORTH"]);
+    expect(processInput(null, ["FOOBAR"])).toEqual(null);
 });
