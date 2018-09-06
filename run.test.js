@@ -37,3 +37,7 @@ test('Placement refuses bad directions', () => {
     expect(processInput(null, ["PLACE", "2,2,FOOBAR"])).toEqual(null);
     expect(processInput([3,3,"NORTH"], ["PLACE", "2,2,FOOBAR"])).toEqual([3,3,"NORTH"]);
 });
+
+test('Placement will override previous bus status', () => {
+    expect(processInput([3,3,"NORTH"], ["PLACE", "2,2,SOUTH"])).toEqual([2,2,"SOUTH"]);
+});

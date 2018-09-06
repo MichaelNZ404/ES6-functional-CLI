@@ -1,5 +1,5 @@
 ## What is this?
-This is an ES6 functional coding test to build an interactive shell with the below specifications:
+This is an ES6 functional coding test to build an interactive shell with the below specifications
 
 ### Task Description:
 Bus in Carpark Simulator
@@ -68,5 +68,6 @@ Output: 3,3,NORTH
 - Ensure you have node installed and added to your PATH (https://nodejs.org/en/)
 - run `npm install`
 - run `npm test` to execute unit tests
+- coverage can be viewed with `npm run coverage`
 - run `node run.js` to open an interactive shell
 
