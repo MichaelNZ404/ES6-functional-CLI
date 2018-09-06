@@ -1,12 +1,17 @@
+let bus = null
+
 // Init stdin listener
 const stdin = process.openStdin();
 stdin.addListener("data", function(input) {
-    processInput(input.toString().trim().split(' '));
+    bus = processInput(bus, input.toString().trim().split(' '));
 });
 
-let bus = null
+const closeSession = () => {
+    return process.stdin.destroy()
+}
 
-const processInput = (input) => {
+const processInput = (bus, input) => {
+    console.log(bus, input)
     switch(input[0].toUpperCase()) { 
         case 'PLACE': { 
             const [x, y, direction] = input[1].split(',');
@@ -20,7 +25,7 @@ const processInput = (input) => {
             else{
                 console.log("Placement invalid: " + input);
             }
-            break;
+            return bus;
         } 
 
         case 'MOVE': {
@@ -35,7 +40,7 @@ const processInput = (input) => {
                         }
                         bus[0] = bus[0] + 1;
                         console.log("Bus moved " + bus[2] + " to position: " + bus);
-                        break;
+                        return bus;
                     }
                     case 'SOUTH': {
                         if(bus[0] - 1 < 0){
@@ -43,7 +48,7 @@ const processInput = (input) => {
                         }
                         bus[0] = bus[0] - 1;
                         console.log("Bus moved " + bus[2] + " to position: " + bus);
-                        break;
+                        return bus;
                     }
                     case 'EAST': {
                         if(bus[1] + 1 > 5){
@@ -51,7 +56,7 @@ const processInput = (input) => {
                         }
                         bus[1] = bus[1] + 1;
                         console.log("Bus moved " + bus[2] + " to position: " + bus);
-                        break;
+                        return bus;
                     }
                     case 'WEST': {
                         if(bus[1] - 1 < 0){
@@ -59,28 +64,31 @@ const processInput = (input) => {
                         }
                         bus[1] = bus[1] - 1;
                         console.log("Bus moved " + bus[2] + " to position: " + bus);
-                        break;
+                        return bus;
                     }
                 }
             }
             catch(error){
                 console.error(error)
+                return bus;
             }
-            break;
+            return bus;
         }
 
         case 'LEFT': { 
-            break; 
+            return bus;
         }
         case 'RIGHT': { 
-            break; 
+            return bus; 
         } 
         case 'REPORT': { 
-            break; 
+            return bus;
         } 
         default: { 
             console.log("Invalid command: " + input);
-            break; 
+            return bus;
         } 
     }
 }
+
+module.exports = {processInput, closeSession};
