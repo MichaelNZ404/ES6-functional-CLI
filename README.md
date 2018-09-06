@@ -2,7 +2,9 @@
 This is an ES6 functional coding test to build an interactive shell with the below specifications
 
 ### Task Description:
-Bus in Carpark Simulator
+
+#### Bus in Carpark Simulator
+
 We use this test as an indication of the kind of code that a candidate would write on a day to
 day basis, so please take your time and submit representative code.
 Using JavaScript, design and code up a Bus in Carpark Simulator. You might want to include
@@ -11,7 +13,8 @@ Host your code on bitbucket or GitHub and send in your repo URL for review. When
 up the repo, structure it such that it will be used as a working repo in the future. You should
 aim to deliver production ready code, and your repository should be structured as you would
 if you were setting up a real repository.
-Description
+
+#### Description
 - The application is a simulation of a robot operated bus moving in a carpark, of
 dimensions 5 units x 5 units.
 - There are no other obstructions in the carpark.
@@ -19,11 +22,12 @@ dimensions 5 units x 5 units.
 carpark. Any movement that would result in the bus leaving the carpark must be
 prevented, however further valid movement commands must still be allowed.
 The application should be able to read in any one of the following commands:
-PLACE X,Y,F
-MOVE
-LEFT
-RIGHT
-REPORT
+- - PLACE X,Y,F
+- - MOVE
+- - LEFT
+- - RIGHT
+- - REPORT
+
 - PLACE will put the bus in the carpark in position X,Y and facing NORTH, SOUTH,
 EAST or WEST.
 - The origin (0,0) can be considered to be the SOUTH WEST most corner.
@@ -45,23 +49,29 @@ Constraints:
 placement of the bus.
 - Any move that would cause the bus to exit the carpark must be ignored.
 Here is some example input and output:
-a)
-PLACE 0,0,NORTH
-MOVE
-REPORT
+
+#### Example A)
+- PLACE 0,0,NORTH
+- MOVE
+- REPORT
+
 Output: 0,1,NORTH
-b)
-PLACE 0,0,NORTH
-LEFT
-REPORT
+
+#### Example B)
+- PLACE 0,0,NORTH
+- LEFT
+- REPORT
+
 Output: 0,0,WEST
-c)
-PLACE 1,2,EAST
-MOVE
-MOVE
-LEFT
-MOVE
-REPORT
+
+#### Example C)
+- PLACE 1,2,EAST
+- MOVE
+- MOVE
+- LEFT
+- MOVE
+- REPORT
+
 Output: 3,3,NORTH
 
 ## Installation & Use
@@ -70,4 +80,3 @@ Output: 3,3,NORTH
 - run `npm test` to execute unit tests
 - coverage can be viewed with `npm run coverage`
 - run `node run.js` to open an interactive shell
-
