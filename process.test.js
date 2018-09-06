@@ -15,17 +15,17 @@ test('Placing a bus returns a bus in the expected location and orientation', () 
 });
 
 test('Directional movement for a centered bus works as expected ', () => {
-    expect(processInput([3,3,"NORTH"], ["MOVE"])).toEqual([4,3,"NORTH"]);
-    expect(processInput([3,3,"SOUTH"], ["MOVE"])).toEqual([2,3,"SOUTH"]);
-    expect(processInput([3,3,"EAST"], ["MOVE"])).toEqual([3,4,"EAST"]);
-    expect(processInput([3,3,"WEST"], ["MOVE"])).toEqual([3,2,"WEST"]);
+    expect(processInput([3,3,"NORTH"], ["MOVE"])).toEqual([3,4,"NORTH"]);
+    expect(processInput([3,3,"SOUTH"], ["MOVE"])).toEqual([3,2,"SOUTH"]);
+    expect(processInput([3,3,"EAST"], ["MOVE"])).toEqual([4,3,"EAST"]);
+    expect(processInput([3,3,"WEST"], ["MOVE"])).toEqual([2,3,"WEST"]);
 });
 
 test('Directional movement refuses out of bounds', () => {
-    expect(processInput([5,3,"NORTH"], ["MOVE"])).toEqual([5,3,"NORTH"]);
-    expect(processInput([0,3,"SOUTH"], ["MOVE"])).toEqual([0,3,"SOUTH"]);
-    expect(processInput([3,5,"EAST"], ["MOVE"])).toEqual([3,5,"EAST"]);
-    expect(processInput([3,0,"WEST"], ["MOVE"])).toEqual([3,0,"WEST"]);
+    expect(processInput([3,5,"NORTH"], ["MOVE"])).toEqual([3,5,"NORTH"]);
+    expect(processInput([3,0,"SOUTH"], ["MOVE"])).toEqual([3,0,"SOUTH"]);
+    expect(processInput([5,3,"EAST"], ["MOVE"])).toEqual([5,3,"EAST"]);
+    expect(processInput([0,3,"WEST"], ["MOVE"])).toEqual([0,3,"WEST"]);
 });
 
 test('Placement refuses out of bounds', () => {
@@ -45,13 +45,13 @@ test('Placement will override previous bus status', () => {
 test('Rotation works as expected', () => {
     expect(processInput([3,3,"NORTH"], ["LEFT"])).toEqual([3,3,"WEST"]);
     expect(processInput([3,3,"SOUTH"], ["LEFT"])).toEqual([3,3,"EAST"]);
-    expect(processInput([3,3,"EAST"], ["LEFT"])).toEqual([3,3,"SOUTH"]);
-    expect(processInput([3,3,"WEST"], ["LEFT"])).toEqual([3,3,"NORTH"]);
+    expect(processInput([3,3,"EAST"], ["LEFT"])).toEqual([3,3,"NORTH"]);
+    expect(processInput([3,3,"WEST"], ["LEFT"])).toEqual([3,3,"SOUTH"]);
     expect(processInput(null, ["LEFT"])).toEqual(null);
     expect(processInput([3,3,"NORTH"], ["RIGHT"])).toEqual([3,3,"EAST"]);
     expect(processInput([3,3,"SOUTH"], ["RIGHT"])).toEqual([3,3,"WEST"]);
-    expect(processInput([3,3,"EAST"], ["RIGHT"])).toEqual([3,3,"NORTH"]);
-    expect(processInput([3,3,"WEST"], ["RIGHT"])).toEqual([3,3,"SOUTH"]);
+    expect(processInput([3,3,"EAST"], ["RIGHT"])).toEqual([3,3,"SOUTH"]);
+    expect(processInput([3,3,"WEST"], ["RIGHT"])).toEqual([3,3,"NORTH"]);
     expect(processInput(null, ["RIGHT"])).toEqual(null);
 });
 
@@ -63,4 +63,28 @@ test('Reporting does not alter the state of the bus', () => {
 test('Invalid commands do not alter the state of the bus', () => {
     expect(processInput([3,3,"NORTH"], ["FOOBAR"])).toEqual([3,3,"NORTH"]);
     expect(processInput(null, ["FOOBAR"])).toEqual(null);
+});
+
+test('It passes example input A', () => {
+    let bus = null;
+    bus = processInput(bus, ["PLACE", "0,0,NORTH"])
+    bus = processInput(bus, ["MOVE"])
+    expect(bus).toEqual([0,1,"NORTH"]);
+});
+
+test('It passes example input B', () => {
+    let bus = null;
+    bus = processInput(bus, ["PLACE", "0,0,NORTH"])
+    bus = processInput(bus, ["LEFT"])
+    expect(bus).toEqual([0,0,"WEST"]);
+});
+
+test('It passes example input C', () => {
+    let bus = null;
+    bus = processInput(bus, ["PLACE", "1,2,EAST"])
+    bus = processInput(bus, ["MOVE"])
+    bus = processInput(bus, ["MOVE"])
+    bus = processInput(bus, ["LEFT"])
+    bus = processInput(bus, ["MOVE"])
+    expect(bus).toEqual([3,3,"NORTH"]);
 });

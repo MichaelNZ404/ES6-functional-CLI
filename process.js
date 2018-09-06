@@ -25,31 +25,31 @@ const processInput = (bus, input) => {
                 }
                 switch(bus[2].toUpperCase()) { 
                     case 'NORTH': {
-                        if(bus[0] + 1 > 5){
-                            throw "Move not accepted, would move bus out of bounds to position: " + [bus[0] + 1, bus[1], bus[2]];
-                        }
-                        bus[0] = bus[0] + 1;
-                        return bus;
-                    }
-                    case 'SOUTH': {
-                        if(bus[0] - 1 < 0){
-                            throw "Move not accepted, would move bus out of bounds to position: " + [bus[0] - 1, bus[1], bus[2]];
-                        }
-                        bus[0] = bus[0] - 1;
-                        return bus;
-                    }
-                    case 'EAST': {
                         if(bus[1] + 1 > 5){
                             throw "Move not accepted, would move bus out of bounds to position: " + [bus[0], bus[1] +1, bus[2]];
                         }
                         bus[1] = bus[1] + 1;
                         return bus;
                     }
-                    case 'WEST': {
+                    case 'SOUTH': {
                         if(bus[1] - 1 < 0){
                             throw "Move not accepted, would move bus out of bounds to position: " + [bus[0], bus[1] - 1, bus[2]];
                         }
                         bus[1] = bus[1] - 1;
+                        return bus;
+                    }
+                    case 'EAST': {
+                        if(bus[0] + 1 > 5){
+                            throw "Move not accepted, would move bus out of bounds to position: " + [bus[0] + 1, bus[1], bus[2]];
+                        }
+                        bus[0] = bus[0] + 1;
+                        return bus;
+                    }
+                    case 'WEST': {
+                        if(bus[0] - 1 < 0){
+                            throw "Move not accepted, would move bus out of bounds to position: " + [bus[0] - 1, bus[1], bus[2]];
+                        }
+                        bus[0] = bus[0] - 1;
                         return bus;
                     }
                 }
@@ -75,11 +75,11 @@ const processInput = (bus, input) => {
                         return bus;
                     }
                     case 'EAST': {
-                        bus[2] = 'SOUTH';
+                        bus[2] = 'NORTH';
                         return bus;
                     }
                     case 'WEST': {
-                        bus[2] = 'NORTH';
+                        bus[2] = 'SOUTH';
                         return bus;
                     }
                 }
@@ -105,11 +105,11 @@ const processInput = (bus, input) => {
                         return bus;
                     }
                     case 'EAST': {
-                        bus[2] = 'NORTH';
+                        bus[2] = 'SOUTH';
                         return bus;
                     }
                     case 'WEST': {
-                        bus[2] = 'SOUTH';
+                        bus[2] = 'NORTH';
                         return bus;
                     }
                 }
