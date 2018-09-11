@@ -1,5 +1,15 @@
-## What is this?
-This is an ES6 functional coding test to build an interactive shell with the below specifications
+## ES6 Functional Bus
+This is an ES6 functional coding test to build an interactive shell with the specifications detailed below.
+
+![Screenshot](README.png)
+
+## Installation & Use
+- Ensure you have node installed and added to your PATH (https://nodejs.org/en/)
+- run `npm install`
+- run `npm test` to execute unit tests
+- coverage can be viewed with `npm run coverage`
+- run `node run.js` to open an interactive shell
+
 
 ### Task Description:
 
@@ -73,10 +83,3 @@ Output: 0,0,WEST
 - REPORT
 
 Output: 3,3,NORTH
-
-## Installation & Use
-- Ensure you have node installed and added to your PATH (https://nodejs.org/en/)
-- run `npm install`
-- run `npm test` to execute unit tests
-- coverage can be viewed with `npm run coverage`
-- run `node run.js` to open an interactive shell
